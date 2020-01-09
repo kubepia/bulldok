@@ -33,11 +33,10 @@ public class AuthController {
 
    private final Gson gson = new Gson();
 
-   @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
+   @PostMapping(value = "/api/v1/login", consumes = "application/json", produces = "application/json")
    public String login(@RequestBody final String entity) {
-      logger.info("====Login =====");
+      logger.info("====Login api v1=====");
       logger.info(entity);
-
 
       final Type type = new TypeToken<Map<String, String>>() {
       }.getType();

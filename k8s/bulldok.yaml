@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bulldok-deploy
+  labels:
+    app: bulldok
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bulldok
+  template:
+    metadata:
+      labels:
+        app: bulldok
+    spec:
+      containers:
+      - name: bulldok
+        image: registry.darumland.net:5000/sumbank/sam-bulldok
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "1000Mi"
+            cpu: "1000m"    
+        ports:
+        - containerPort: 8080
+          name: apport
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: apport
+          initialDelaySeconds: 3
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: apport
+          initialDelaySeconds: 1
+          periodSeconds: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bulldok-svc
+spec:
+  selector:
+    app: bulldok
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: apport
