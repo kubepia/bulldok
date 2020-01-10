@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -33,6 +34,7 @@ public class AuthController {
 
    private final Gson gson = new Gson();
 
+   @ResponseBody
    @PostMapping(value = "/api/v1/login", consumes = "application/json", produces = "application/json")
    public String login(@RequestBody final String entity) {
       logger.info("====Login api v1=====");
@@ -54,7 +56,15 @@ public class AuthController {
       }
 
    }
+   @ResponseBody
+   @PostMapping(value = "/api/v2/login", consumes = "application/json", produces = "application/json")
+   public String login2(@RequestBody final Map<String,String> entity) {
+      logger.info("==Login(api v1): {}",entity.toString());
+      return "{status:'ok'}";
 
+   }
+
+   @ResponseBody
    @GetMapping(value = "/user/{id}")
    public String getUserInfo(@PathVariable final String id) {
       final String str = gson.toJson(new User(id));
