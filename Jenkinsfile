@@ -9,7 +9,7 @@ def IMAGE_VERSION = new Date().format('yyyyMMdd-HHmmss')
 // def CONTAINER_NAME = 'samstore'
 
 podTemplate(label : label,
-    namespace: 'sample',
+    namespace: 'jenkins',
     containers: [
         containerTemplate(name: 'maven', image: 'registry.darumland.net:5000/cicd/maven:3.5.2-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
         containerTemplate(name: 'docker', image: 'registry.darumland.net:5000/cicd/docker:latest', ttyEnabled: true, command: 'cat'),
@@ -17,7 +17,7 @@ podTemplate(label : label,
     ],
     volumes: [
         hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock'),
-        persistentVolumeClaim(mountPath: '/root/.m2', claimName: 'localrepo-pvc')
+        // persistentVolumeClaim(mountPath: '/root/.m2', claimName: 'localrepo-pvc')
     ]) {
  
     node(label) {
