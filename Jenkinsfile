@@ -1,4 +1,4 @@
-def label = "daishin-${UUID.randomUUID().toString()}"
+def label = "bnk-${UUID.randomUUID().toString()}"
 
 def DOCKER_REGISTRY = 'registry.darumland.net:5000'
 def DOCKER_IMAGE = 'sumbank/sam-bulldok' //harbor project name
@@ -9,7 +9,7 @@ def IMAGE_VERSION = new Date().format('yyyyMMdd-HHmmss')
 // def CONTAINER_NAME = 'samstore'
 
 podTemplate(label : label,
-    namespace: 'cicd',
+    namespace: 'sample',
     containers: [
         containerTemplate(name: 'maven', image: 'registry.darumland.net:5000/cicd/maven:3.5.2-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
         containerTemplate(name: 'docker', image: 'registry.darumland.net:5000/cicd/docker:latest', ttyEnabled: true, command: 'cat'),
