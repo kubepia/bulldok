@@ -13,7 +13,7 @@ podTemplate(label : label,
     containers: [
         containerTemplate(name: 'maven', image: 'registry.darumland.net:5000/cicd/maven:3.5.2-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
         containerTemplate(name: 'docker', image: 'registry.darumland.net:5000/cicd/docker:latest', ttyEnabled: true, command: 'cat'),
-        containerTemplate(name: 'kubectl', image: 'registry.darumland.net:5000/cicd/k8s-kubectl:latest', ttyEnabled: true, command: 'cat')
+        containerTemplate(name: 'kubectl', image: 'registry.darumland.net:5000/cicd/kubectl:latest', ttyEnabled: true, command: 'cat')
     ],
     volumes: [
         hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock'),
