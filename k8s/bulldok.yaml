@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: bulldok
-        image: registry.darumland.net:5000/sumbank/sam-bulldok
+        image: registry.darumland.net:5000/sum-pipe/bulldok
         resources:
           requests:
             memory: "500Mi"
