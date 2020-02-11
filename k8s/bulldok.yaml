@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: bulldok
-        image: docker.io/darumms/bulldok:1.0.0
+        image: docker.io/darumms/bulldok:2.0.0
         resources:
           requests:
             memory: "500Mi"
