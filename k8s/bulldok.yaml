@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: bulldok
-        image: registry.darumland.net:5000/sum-pipe/bulldok
+        image: docker.io/darumms/bulldok:1.0.0
         resources:
           requests:
             memory: "500Mi"
