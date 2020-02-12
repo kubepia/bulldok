@@ -49,5 +49,19 @@ spec:
     app: bulldok
   ports:
     - protocol: TCP
-      port: 19080
+      port: 80
       targetPort: apport
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: bulldok-ing
+spec:
+  rules:
+  - host: skb.bulldok.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: bulldok-svc
+          servicePort: 80
