@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bulldok-deploy
+  labels:
+    app: bulldok
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bulldok
+  template:
+    metadata:
+      labels:
+        app: bulldok
+    spec:
+      containers:
+      - name: bulldok
+        image: mycluster.icp:8500/tekton/bulldok:2.0.0
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "1000Mi"
+            cpu: "1000m"    
+        ports:
+        - containerPort: 8080
+          name: apport
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: apport
+          initialDelaySeconds: 3
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: apport
+          initialDelaySeconds: 1
+          periodSeconds: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bulldok-svc
+spec:
+  selector:
+    app: bulldok
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: apport
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: bulldok-ing
+spec:
+  rules:
+  - host: skb.bulldok.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: bulldok-svc
+          servicePort: 80
