@@ -43,7 +43,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bulldok-svc
+  name: bulldok-svc2
 spec:
   selector:
     app: bulldok
@@ -55,13 +55,13 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: bulldok-ing
+  name: bulldok-ing2
   labels:
     app: bulldok
 spec:
   rules:
-  - host: bulldok.test.com  
-  - http:
+  - host: bulldok.test.com
+    http:
       paths:
       - backend:
           serviceName: bulldok-svc
