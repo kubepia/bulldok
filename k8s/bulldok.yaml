@@ -64,6 +64,6 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: bulldok-svc
+          serviceName: bulldok-svc2
           servicePort: 8080
         path: /health
