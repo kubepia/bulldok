@@ -56,12 +56,14 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: bulldok-ing
+  labels:
+    app: bulldok
 spec:
   rules:
-  - host: bulldok.test.com
-    http:
+  - host: bulldok.test.com  
+  - http:
       paths:
-      - path: /
-        backend:
+      - backend:
           serviceName: bulldok-svc
-          servicePort: 80
+          servicePort: 8080
+        path: /health
