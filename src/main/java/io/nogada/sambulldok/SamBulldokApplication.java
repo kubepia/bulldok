@@ -21,7 +21,7 @@ public class SamBulldokApplication {
 	@ResponseBody
 	@GetMapping(value = "/health")
 	public String health() {
-	   return "ok123333";
+	   return "ok12344";
 	}
 
 	// logger filter setting
