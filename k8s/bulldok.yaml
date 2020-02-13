@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: bulldok
-        image: mycluster.icp:8500/aaa/bulldok:3.0.0
+        image: mycluster.icp:8500/aaa/bulldok
         resources:
           requests:
             memory: "500Mi"
