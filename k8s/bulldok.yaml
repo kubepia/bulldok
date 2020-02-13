@@ -51,3 +51,17 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: apport
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: bulldok-ing
+spec:
+  rules:
+  - host: bulldok.test.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: bulldok-svc
+          servicePort: 80
