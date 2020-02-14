@@ -43,7 +43,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bulldok-svc2
+  name: bulldok-svc
 spec:
   selector:
     app: bulldok
@@ -55,7 +55,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: bulldok-ing2
+  name: bulldok-ing
   labels:
     app: bulldok
 spec:
@@ -64,6 +64,6 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: bulldok-svc2
+          serviceName: bulldok-svc
           servicePort: 8080
         path: /health
