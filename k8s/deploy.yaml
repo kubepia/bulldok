@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: bulldok
-        image: g2.skb:8500/dev-pipeline/bulldok
+        image: g3.skb:8500/dev-pipeline/bulldok
         resources:
           requests:
             memory: "500Mi"
